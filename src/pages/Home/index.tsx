@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, FlatList, Text, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { CartContext } from '../../context/CartContext';
 import { formatPrice } from '../../utils/format';
 
@@ -25,17 +25,37 @@ const Home: React.FC = () => {
       keyExtractor={item => item?.id}
       renderItem={({item}) => {
         return (
-          <View key={item?.id} style={{height: 50, padding: 10, borderWidth: 1, marginVertical: 10}}>
+          <View
+            key={item?.id} 
+            style={{
+              borderWidth: 1, 
+              flexDirection: 'row', 
+              height: 50, 
+              justifyContent: 'space-between', 
+              marginVertical: 10, 
+              padding: 10
+            }}
+          >
             <View>
               <Text>Produto: {item?.name}</Text>
               <Text>Preço: {formatPrice(item?.price)}</Text>
             </View>
-            <View>
-              <Button
-                onPress={() => addProductToCart(item?.id, item?.name, item?.price)}
-                title='Adicionar'
-              />
-            </View>
+            <TouchableOpacity
+              onPress={() => addProductToCart(item?.id, item?.name, item?.price)}
+              style={{
+                backgroundColor: 'black',
+                padding: 5
+              }}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Add
+              </Text>
+            </TouchableOpacity>
           </View>
         )
       }}

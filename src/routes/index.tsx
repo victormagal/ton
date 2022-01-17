@@ -6,7 +6,7 @@ import CartProvider from '../context/CartContext';
 import Home from '../pages/Home';
 import Checkout from '../pages/Checkout';
 
-const App = () => {
+const App: React.FC = () => {
   const Stack = createNativeStackNavigator();
   return (
     <CartProvider>
@@ -16,11 +16,11 @@ const App = () => {
             name="Home"
             component={Home}
             options={({navigation}) => ({
-              headerTitle: 'List of cars',
+              headerTitle: 'Products',
               headerRight: () => (
                 <Button
                   onPress={() => navigation.navigate('Checkout')}
-                  title='Checkout'
+                  title='Cart'
                   color='#000'
                 />
               )
